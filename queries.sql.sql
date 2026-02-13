@@ -96,7 +96,7 @@ GROUP BY department_name;
 
 -- [UA] Пошук менеджерів та їхніх доходів. Керівництво хоче побачити звіт по всіх співробітниках, які займають посади менеджерів, але тільки тих, хто працює в департаментах. Виводжу повне ім'я (однією колонкою: ім'я та прізвище через пробіл), посаду та зарплату. 
 -- [EN] Search for managers and their earnings. Management wants a report on all employees in Manager positions who work within departments. Select the full name (as a single column: first and last name separated by a space), occupation, and salary.
-SELECT first_name || '' || last_name AS full_name
+SELECT first_name || ' ' || last_name AS full_name
 	  ,salary
 	  ,occupation
 FROM employee_salary AS sal
@@ -184,7 +184,7 @@ WHERE salary > avg_salary;
 
 -- [UA] Виводжу топ-3 найбільш високооплачуваних співробітників у кожному департаменті. 
 -- [EN] Select the top 3 highest-paid employees in each department.
-WITH Top_3_salary_of_each_depart AS   
+WITH Top_3_salary_of_each_depart AS  (
 SELECT sal.employee_id
 	      , sal.salary
 	      , dem.first_name || ' ' || dem.last_name AS full_name
@@ -227,4 +227,5 @@ WHERE dept_id = 1;
 -- [EN] Delete Taras Shevchenko from the employee_demographics table as he has resigned.
 DELETE FROM employee_demographics
 WHERE employee_id = 101;
+
 
